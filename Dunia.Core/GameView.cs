@@ -59,42 +59,52 @@ namespace Dunia.Core
 
         private Rectangle GetRectangle()
         {
-            //if (SpeedY != 0)
-            //    SpeedY -= SpeedY - 2;
-
-            //if (SpeedX != 0)
-            //    SpeedX -= SpeedX - 2;
 
             int x = X + SpeedX;
             int y = Y + SpeedY;
 
-            if (y + 100 > Height || y - 100 < 0)
+            if (y + 100 > Height && SpeedY > 0)
             {
+                Y = Height - 100;
+                SpeedY *= -1;
+                SpeedX += 5;
+            }
+            else if (y - 100 < 0 && SpeedY < 0)
+            {
+                y = 0;
                 SpeedY *= -1;
                 SpeedX += 5;
             }
 
-            if (x + 100 > Height || x - 100 < 0)
+            if (x + 100 > Width && SpeedX > 0)
             {
+                x = Width - 100;
                 SpeedX *= -1;
                 SpeedY += 5;
             }
+            else if (x - 100 < 0 && SpeedX < 0)
+            {
+                SpeedX *= -1;
+                SpeedY += 5;
+                x = 0;
+            }
 
-            X = x;
-            Y = y;
+            X = x + SpeedX;
+            Y = y + SpeedY;
 
             return new Rectangle(X, Y, 100, 100);
         }
 
         private int CheckValue(int value, int max, int min)
         {
-            if (value + 100 < min)
-                return min - 100;
 
-            if (value + 100 > max)
-                return max - 100;
+            if (value < min)
+                return min == 0 ? -1 : min;
 
-            return value;
+            if (value > max)
+                return max == 0 ? 1 : max;
+
+            return value == 0 ? 1 : value;
         }
     }
 }
