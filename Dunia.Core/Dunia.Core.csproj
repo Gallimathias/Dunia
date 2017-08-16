@@ -42,18 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GameView.Designer.cs">
-      <DependentUpon>GameView.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Game.cs" />
+    <Compile Include="Maps\Cell.cs" />
+    <Compile Include="Maps\Map.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="GameView.resx">
-      <DependentUpon>GameView.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="World.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
